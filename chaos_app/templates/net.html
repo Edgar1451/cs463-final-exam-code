@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+    
+{% block content_body %}
+
+<div class="row">
+    <div class="col-md-12"><h3>{{ object|title }}</h3></div>
+
+
+    <div class="col-md-12"><h6>{{object|title}}'s Friends...</h6></div>
+    {% for friend in friends %}
+        <div class="col-md-3">
+            <a href="{% url 'person' friend.pk %}" class="btn btn-sm btn-default text-primary">
+            <div class="card" style="width: 18rem;">
+                <div class="card-img-top text-center"><i class="fas fa-user fa-6x"></i></div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                    {{ friend|title }}
+                    {% if friend.pk == bff.pk %}
+                        <span class="text-danger"><i class="fas fa-heart"></i></span>
+                    {% endif %}
+                    {% if friend.pk == oldest.pk %}
+                        <span class="text-primary"><i class="fas fa-calendar-check"></i></span>
+                    {% endif %}
+                    </h5>                    
+                </div>
+            </div>
+            </a>
+        </div>    
+    {% endfor %}
+    <div class="col-md-12"><span class="text-danger text-small"><i class="fas fa-heart"></i></span> = BFF</div>
+    <div class="col-md-12"><span class="text-primary"><i class="fas fa-calendar-check"></i></i></span> = OLDEST Friend</div>
+</div>
+{% endblock content_body %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+    
+{% block content_body %}
+
+<div class="row">
+<div class="col-md-12"><h3>People</h3></div>
+
+{% for person in object_list %}
+<div class="col-md-3">
+    <a href="{% url 'person' person.pk %}" class="btn btn-sm btn-default">
+    <div class="card" style="width: 18rem;">
+        <div class="card-img-top text-center"><i class="fas fa-user fa-6x"></i></div>
+        <div class="card-body text-center">
+            <h5 class="card-title">{{ person|title }}</h5>
+        </div>
+    </div>
+    </a>
+</div>
+{% endfor %}
+</div>
+{% endblock content_body %}
